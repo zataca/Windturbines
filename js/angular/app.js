@@ -17,11 +17,6 @@ angular.module("blogPrototype", ['blogPrototype.controllers', 'ui.router'])
 						templateUrl: "views/partials/home.html",
 						controller: "HomeCtrl"
 					}) 
-					.state('dashboard', {
-						url: "/dashboard",
-						templateUrl: "views/partials/dashboard.html",
-						controller: "DashboardCtrl"
-					})
 		});
 
  
