@@ -16,6 +16,12 @@ angular.module("blogPrototype", ['blogPrototype.controllers', 'ui.router'])
 						url: "/",
 						templateUrl: "views/partials/home.html",
 						controller: "HomeCtrl"
+					})
+                                        
+                                        .state('opbrengsten', {
+						url: "/",
+						templateUrl: "views/partials/opbrengsten.html",
+						controller: "OpbrengstenCtrl"
 					}) 
 		});
 
