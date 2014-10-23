@@ -1,8 +1,7 @@
 /*
  * In deze file kan je pagina-onhankelijke scripts plaats als je dat handig vindt
  */
-google.load("visualization", "1", {packages:["corechart"]});
-google.setOnLoadCallback(drawChart);
+google.load("visualization", "1", {packages: ["corechart"]});
 function drawChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Tijd', 'Voorspelling', 'Opbrengst'],
@@ -13,6 +12,7 @@ function drawChart() {
 	]);
 	var options = {
 		title: 'Windopbrengst (mW)', aggregationTarget: 'series',
+		chartArea: {width: "60%"}
 	};
 	var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 	chart.draw(data, options);
