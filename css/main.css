@@ -1,5 +1,9 @@
 /* In deze CSS file kan je je eigen opmaak plaatsen */
 
+h2 {
+	text-align: center;
+}
+
 /*
  * Base structure
  */

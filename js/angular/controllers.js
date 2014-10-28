@@ -53,7 +53,7 @@ angular.module('blogPrototype.controllers', [])
 					]);
 					var options = {
 						title: 'Totale opbrengst per jaar',
-						//hAxis: {title: 'Maand', titleTextStyle: {color: 'red'}}
+						
 					};
 					var chart = new google.visualization.ColumnChart($elem[0]);
 					chart.draw(data, options);
@@ -66,16 +66,46 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Tijd', 'Voorspelde kW', 'Actuele kW'],
-						['10:00', 10000, 10200],
-						['10:05', 10170, 10160],
-						['10:10', 6060, 7000],
-						['10:15', 10030, null],
-						['10:30', 1, null],
-						['10:45', 1030, null]
+						['Uren', 'Productie in Wh'],
+						['00', 250],
+						['02', 101],
+						['04', 60],
+						['06', 140],
+						['08', 180],
+						['10', 103],
+						['12', null],
+						['14', null],
+						['16', null],
+						['18', null],
+						['20', null],
+						['22', null]
 					]);
 					var options = {
-						title: 'Windopbrengst (kW)', aggregationTarget: 'series',
+						title: 'Dagproductie', aggregationTarget: 'series',
+						legend: {position: 'bottom'},
+					};
+					var chart = new google.visualization.LineChart($elem[0]);
+					chart.draw(data, options);
+				}
+			}
+		})
+
+		.directive('weekChart', function () {
+			return {
+				restrict: 'A',
+				link: function ($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Dagen', 'Productie in kWh'],
+						['Ma', 25],
+						['Di', 11],
+						['Wo', 30],
+						['Do', 14],
+						['Vr', 18],
+						['Za', 10],
+						['Zo', 09]
+					]);
+					var options = {
+						title: 'Weekproductie', aggregationTarget: 'series',
 						legend: {position: 'bottom'},
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
