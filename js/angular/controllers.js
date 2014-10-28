@@ -1,18 +1,20 @@
 /* De paginaspecifieke code zit in de controllers */
 angular.module('blogPrototype.controllers', [])
-		.controller('HomeCtrl', function ($scope) {
-			console.info("Indexcontroller intiated")
-
+		.controller('HomeCtrl', function($scope) {
+			console.info("Indexcontroller intiated");
+			$(".dropdown-menu li a").click(function() {
+				$(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
+			});
 		})
 
-		.controller('OpbrengstenCtrl', function ($scope) {
-			console.info("Indexcontroller intiated")
+		.controller('OpbrengstenCtrl', function($scope) {
+			console.info("Indexcontroller intiated");
 		})
 
-		.directive('predictionChart', function () {
+		.directive('predictionChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Tijd', 'Voorspelde kW', 'Actuele kW'],
 						['10:00', 10000, 10200],
@@ -24,18 +26,18 @@ angular.module('blogPrototype.controllers', [])
 					]);
 					var options = {
 						title: 'Windopbrengst (kW)', aggregationTarget: 'series',
-						legend: {position: 'bottom'},
+						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
 					chart.draw(data, options);
 				}
-			}
+			};
 		})
 
-		.directive('profitChart', function () {
+		.directive('profitChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Year', '2014', '2013'],
 						['Jan', 1000, 400],
@@ -49,22 +51,21 @@ angular.module('blogPrototype.controllers', [])
 						['Sep', 1030, 540],
 						['Okt', 888, 999],
 						['Nov', 666, 555],
-						['Dec', 111, 1111],
+						['Dec', 111, 1111]
 					]);
 					var options = {
-						title: 'Totale opbrengst per jaar',
-						
+						title: 'Totale opbrengst per jaar'
 					};
 					var chart = new google.visualization.ColumnChart($elem[0]);
 					chart.draw(data, options);
 				}
-			}
+			};
 		})
 
-		.directive('dayChart', function () {
+		.directive('dayChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Uren', 'Productie in Wh'],
 						['00', 250],
@@ -82,18 +83,18 @@ angular.module('blogPrototype.controllers', [])
 					]);
 					var options = {
 						title: 'Dagproductie', aggregationTarget: 'series',
-						legend: {position: 'bottom'},
+						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
 					chart.draw(data, options);
 				}
-			}
+			};
 		})
 
-		.directive('weekChart', function () {
+		.directive('weekChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Dagen', 'Productie in kWh'],
 						['Ma', 25],
@@ -106,10 +107,10 @@ angular.module('blogPrototype.controllers', [])
 					]);
 					var options = {
 						title: 'Weekproductie', aggregationTarget: 'series',
-						legend: {position: 'bottom'},
+						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
 					chart.draw(data, options);
 				}
-			}
+			};
 		})
