@@ -1,8 +1,7 @@
 /* De paginaspecifieke code zit in de controllers */
 angular.module('blogPrototype.controllers', [])
-		.controller('HomeCtrl', function ($scope) {
+		.controller('HomeCtrl', function($scope) {
 			console.info("Indexcontroller intiated");
-<<<<<<< HEAD
 
 			// populate data
 			var turbines = ["1", "2", "3"];
@@ -11,47 +10,53 @@ angular.module('blogPrototype.controllers', [])
 			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "NO", "Sterke wind"];
 
 			// standard view
-			$('#turbine').html('Windturbine ' + turbines[0]);
-			$('#molen').html(turbine1[0]);
-			$('#windsnelheid').html(turbine1[1]);
-			$('#vermogen').html(turbine1[2]);
-			$('#windkracht').html(turbine1[3]);
-			$('#windrichting').html(turbine1[4]);
-			$('#wind').html(turbine1[5]);
+			populateView(turbine1);
+			$('#turbine').html("Windturbine 1");
 
 			// populate dropdown menu
 			var s = '';
 			for (val in turbines) {
-				s += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Windturbine ' + turbines[val] + ' </a></li>';
+				s += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Windturbine ' + turbines[val] + '</a></li>';
 			}
 			$('.dropdown-menu').html(s);
 
 			// change view to selected item
 			$(".dropdown-menu li a").click(function() {
-				$('.dropdown-toggle').html($(this).text() + '<span class="caret"></span>');
+				var windturbine = $(this).text();
+				$('.dropdown-toggle').html(windturbine + '<span class="caret"></span>');
 				$('#turbine').html($(this).text());
-				$('#molen').html(turbine1[0]);
-				$('#windsnelheid').html(turbine1[1]);
-				$('#vermogen').html(turbine1[2]);
-				$('#windkracht').html(turbine1[3]);
-				$('#windrichting').html(turbine1[4]);
-				$('#wind').html(turbine1[5]);
+				console.info($(this).text());
+				if (windturbine === "Windturbine 1") {
+					populateView(turbine1);
+				} else if (windturbine === "Windturbine 2") {
+					populateView(turbine2);
+				} else {
+					populateView(turbine3);
+				}
 			})
-=======
-			$(".dropdown-menu li a").click(function () {
+
+			$(".dropdown-menu li a").click(function() {
 				$(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
 			});
->>>>>>> origin/master
+
+			function populateView(values) {
+				$('#molen').html(values[0]);
+				$('#windsnelheid').html(values[1]);
+				$('#vermogen').html(values[2]);
+				$('#windkracht').html(values[3]);
+				$('#windrichting').html(values[4]);
+				$('#wind').html(values[5]);
+			}
 		})
 
-		.controller('OpbrengstenCtrl', function ($scope) {
+		.controller('OpbrengstenCtrl', function($scope) {
 			console.info("Indexcontroller intiated");
 		})
 
-		.directive('predictionChart', function () {
+		.directive('predictionChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Tijd', 'Voorspelde kW', 'Actuele kW'],
 						['10:00', 10000, 10200],
@@ -71,10 +76,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('profitChart', function () {
+		.directive('profitChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Year', '2014', '2013'],
 						['Jan', 1000, 400],
@@ -99,10 +104,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('dayChart', function () {
+		.directive('dayChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Uren', 'Productie in kWh'],
 						['00', 250],
@@ -128,10 +133,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('weekChart', function () {
+		.directive('weekChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Dagen', 'Productie in kWh'],
 						['Ma', 25],
@@ -152,10 +157,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('monthChart', function () {
+		.directive('monthChart', function() {
 			return {
 				restrict: 'A',
-				link: function ($scope, $elem, $attr) {
+				link: function($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Dagen', 'Productie in kWh'],
 						['1', 25],
