@@ -8,10 +8,11 @@ angular.module('blogPrototype.controllers', [])
 			var turbine1 = ["486 kW", "30 m/s", "24 %", "Z 1 Bft", "ZW", "Matige wind"];
 			var turbine2 = ["576 kW", "15 m/s", "21 %", "Z 5 Bft", "NW", "Zwakke wind"];
 			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "NO", "Sterke wind"];
-
+			
 			// standard view
-			populateView(turbine1);
-			$('#turbine').html("Windturbine 1");
+			updateView(turbine1);
+			$('#turbine').html('Windturbine 1');
+			$('.dropdown-toggle').html('Windturbine 1' + ' <span class="caret"></span>');
 
 			// populate dropdown menu
 			var s = '';
@@ -23,23 +24,19 @@ angular.module('blogPrototype.controllers', [])
 			// change view to selected item
 			$(".dropdown-menu li a").click(function() {
 				var windturbine = $(this).text();
-				$('.dropdown-toggle').html(windturbine + '<span class="caret"></span>');
+				$('.dropdown-toggle').html(windturbine + ' <span class="caret"></span>');
 				$('#turbine').html($(this).text());
 				console.info($(this).text());
 				if (windturbine === "Windturbine 1") {
-					populateView(turbine1);
+					updateView(turbine1);
 				} else if (windturbine === "Windturbine 2") {
-					populateView(turbine2);
+					updateView(turbine2);
 				} else {
-					populateView(turbine3);
+					updateView(turbine3);
 				}
 			})
 
-			$(".dropdown-menu li a").click(function() {
-				$(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
-			});
-
-			function populateView(values) {
+			function updateView(values) {
 				$('#molen').html(values[0]);
 				$('#windsnelheid').html(values[1]);
 				$('#vermogen').html(values[2]);
