@@ -2,9 +2,40 @@
 angular.module('blogPrototype.controllers', [])
 		.controller('HomeCtrl', function($scope) {
 			console.info("Indexcontroller intiated");
+
+			// populate data
+			var turbines = ["1", "2", "3"];
+			var turbine1 = ["486 kW", "30 m/s", "24 %", "Z 1 Bft", "ZW", "Matige wind"];
+			var turbine2 = ["576 kW", "15 m/s", "21 %", "Z 5 Bft", "NW", "Zwakke wind"];
+			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "NO", "Sterke wind"];
+
+			// standard view
+			$('#turbine').html('Windturbine ' + turbines[0]);
+			$('#molen').html(turbine1[0]);
+			$('#windsnelheid').html(turbine1[1]);
+			$('#vermogen').html(turbine1[2]);
+			$('#windkracht').html(turbine1[3]);
+			$('#windrichting').html(turbine1[4]);
+			$('#wind').html(turbine1[5]);
+
+			// populate dropdown menu
+			var s = '';
+			for (val in turbines) {
+				s += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Windturbine ' + turbines[val] + ' </a></li>';
+			}
+			$('.dropdown-menu').html(s);
+
+			// change view to selected item
 			$(".dropdown-menu li a").click(function() {
-				$(this).parents('.dropdown').find('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
-			});
+				$('.dropdown-toggle').html($(this).text() + '<span class="caret"></span>');
+				$('#turbine').html($(this).text());
+				$('#molen').html(turbine1[0]);
+				$('#windsnelheid').html(turbine1[1]);
+				$('#vermogen').html(turbine1[2]);
+				$('#windkracht').html(turbine1[3]);
+				$('#windrichting').html(turbine1[4]);
+				$('#wind').html(turbine1[5]);
+			})
 		})
 
 		.controller('OpbrengstenCtrl', function($scope) {
