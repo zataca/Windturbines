@@ -177,3 +177,79 @@ angular.module('blogPrototype.controllers', [])
 				}
 			};
 		})
+		
+		.directive('monthHistoryChart', function() {
+			return {
+				restrict: 'A',
+				link: function($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Year', '2014'],
+						['Jan', 1000],
+						['Feb', 1170],
+						['Maa', 660],
+						['Apr', 1030],
+						['Mei', 100],
+						['Jun', 900],
+						['Jul', 555],
+						['Aug', 1111],
+						['Sep', 1030],
+						['Okt', 888],
+						['Nov', 666],
+						['Dec', 111]
+					]);
+					var options = {
+						title: 'Totale opbrengst per jaar'
+					};
+					var chart = new google.visualization.ColumnChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
+		
+		.directive('quarterHistoryChart', function() {
+			return {
+				restrict: 'A',
+				link: function($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Year', '2014'],
+						['Q1', 2730],
+						['Q2', 2030],
+						['Q3', 2695],
+						['Q4', 1500]
+					]);
+					var options = {
+						title: 'Totale opbrengst per jaar'
+					};
+					var chart = new google.visualization.ColumnChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
+		
+		.directive('yearHistoryChart', function() {
+			return {
+				restrict: 'A',
+				link: function($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Year', '2014'],
+						['Jan', 1000],
+						['Feb', 1170],
+						['Maa', 660],
+						['Apr', 1030],
+						['Mei', 100],
+						['Jun', 900],
+						['Jul', 555],
+						['Aug', 1111],
+						['Sep', 1030],
+						['Okt', 888],
+						['Nov', 666],
+						['Dec', 111]
+					]);
+					var options = {
+						title: 'Totale opbrengst per jaar'
+					};
+					var chart = new google.visualization.ColumnChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
