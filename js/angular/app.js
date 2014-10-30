@@ -27,7 +27,7 @@ angular.module("blogPrototype", ['blogPrototype.controllers', 'ui.router'])
 					.state('historie', {
 						url: "/",
 						templateUrl: "views/partials/historie.html",
-						controller: "OpbrengstenCtrl"
+						controller: "HistorieCtrl"
 					})
 		});
 
