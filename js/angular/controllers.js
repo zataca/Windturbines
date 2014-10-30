@@ -253,3 +253,32 @@ angular.module('blogPrototype.controllers', [])
 				}
 			};
 		})
+		
+		.directive('dayPredictionChart', function () {
+			return {
+				restrict: 'A',
+				link: function ($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Uren', 'Voorspelde kW', 'Actuele kW'],
+						['00', 10000, 10200],
+						['02', 10170, 10160],
+						['04', 6060, 7000],
+						['06', 10030, null],
+						['08', 10050, null],
+						['10', 10300, null],
+						['12', 10300, null],
+						['14', 10300, null],
+						['16', 10300, null],
+						['18', 10300, null],
+						['20', 10300, null],
+						['22', 10300, null],
+					]);
+					var options = {
+						title: 'Dagproductie', aggregationTarget: 'series',
+						legend: {position: 'bottom'}
+					};
+					var chart = new google.visualization.LineChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
