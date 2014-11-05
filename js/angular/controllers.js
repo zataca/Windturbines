@@ -142,7 +142,7 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Dagen', 'Productie in kWh'],
+						['Dagen', 'Productie in kW'],
 						['Ma', 25],
 						['Di', 11],
 						['Wo', 30],
@@ -166,7 +166,7 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Dagen', 'Productie in kWh'],
+						['Dagen', 'Productie in MW'],
 						['1', 25],
 						['5', 30],
 						['10', 35],
@@ -190,7 +190,7 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Month', 'kWh'],
+						['Month', 'MW'],
 						['Jan', 1000],
 						['Feb', 1170],
 						['Maa', 660],
@@ -218,7 +218,7 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Quarter', 'kWh'],
+						['Quarter', 'MW'],
 						['Q1', 2730],
 						['Q2', 2030],
 						['Q3', 2695],
@@ -238,7 +238,7 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Year', 'gWh'],
+						['Year', 'GW'],
 						['2014', 10000],
 						['2013', 11700],
 						['2012', 9000],
