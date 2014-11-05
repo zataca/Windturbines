@@ -62,16 +62,16 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Tijd', 'Voorspelde kW', 'Actuele kW'],
-						['10:00', 10000, 10200],
-						['10:05', 10170, 10160],
-						['10:10', 6060, 7000],
-						['10:15', 10030, null],
-						['10:30', 10050, null],
-						['10:45', 1030, null]
+						['Tijd', 'Voorspelde kWh', 'Actuele kWh'],
+						['10:00', 100, 102],
+						['10:05', 101, 101],
+						['10:10', 220, 230],
+						['10:15', 150, null],
+						['10:30', 150, null],
+						['10:45', 130, null]
 					]);
 					var options = {
-						title: 'Windopbrengst (kW)', aggregationTarget: 'series',
+						title: 'Windopbrengst (kWh)', aggregationTarget: 'series',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
@@ -259,22 +259,22 @@ angular.module('blogPrototype.controllers', [])
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Uren', 'Voorspelde kW', 'Actuele kW'],
-						['00', 10000, 10200],
-						['02', 10170, 10160],
-						['04', 6060, 7000],
-						['06', 10030, null],
-						['08', 10050, null],
-						['10', 10300, null],
-						['12', 10300, null],
-						['14', 10300, null],
-						['16', 10300, null],
-						['18', 10300, null],
-						['20', 10300, null],
-						['22', 10300, null],
+						['Uren', 'Voorspelde Euro', 'Actuele Euro'],
+						['00', 1000, 1020],
+						['02', 1017, 1016],
+						['04', 2020, 2050],
+						['06', 1003, 1050],
+						['08', 1005, 900],
+						['10', 1030, 1100],
+						['12', 1030, null],
+						['14', 1500, null],
+						['16', 1400, null],
+						['18', 1800, null],
+						['20', 2000, null],
+						['22', 2100, null],
 					]);
 					var options = {
-						title: 'Dagproductie', aggregationTarget: 'series',
+						title: 'Dagproductie (Euro)', aggregationTarget: 'series',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
