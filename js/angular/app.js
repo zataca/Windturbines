@@ -18,12 +18,6 @@ angular.module("blogPrototype", ['blogPrototype.controllers', 'ui.router'])
 						controller: "HomeCtrl"
 					})
 
-					.state('opbrengsten', {
-						url: "/",
-						templateUrl: "views/partials/opbrengsten.html",
-						controller: "OpbrengstenCtrl"
-					})
-					
 					.state('historie', {
 						url: "/",
 						templateUrl: "views/partials/historie.html",

@@ -13,6 +13,9 @@ angular.module('blogPrototype.controllers', [])
 			updateView(turbine1);
 			$('#turbine').html('Windturbine 1');
 			$('.dropdown-toggle').html('Windturbine 1' + ' <span class="caret"></span>');
+			$("#week").hide();
+			$("#month").hide();
+			$("#year").hide();
 
 			// populate dropdown menu
 			var s = '';
@@ -43,10 +46,35 @@ angular.module('blogPrototype.controllers', [])
 				$('#windrichting').html(values[4]);
 				$('#wind').html(values[5]);
 			}
-		})
 
-		.controller('OpbrengstenCtrl', function($scope) {
-			console.info("Indexcontroller intiated");
+			$(".btn-group > button.btn").on("click", function() {
+				value = this.innerHTML;
+				if (value === "Vandaag") {
+					$("#prediction").show();
+					$("#day").show();
+					$("#week").hide();
+					$("#month").hide();
+					$("#year").hide();
+				} else if (value === "Week") {
+					$("#week").show();
+					$("#prediction").hide();
+					$("#day").hide();
+					$("#month").hide();
+					$("#year").hide();
+				} else if (value === "Maand") {
+					$("#month").show();
+					$("#prediction").hide();
+					$("#day").hide();
+					$("#week").hide();
+					$("#year").hide();
+				} else if (value === "Jaar") {
+					$("#year").show();
+					$("#prediction").hide();
+					$("#day").hide();
+					$("#week").hide();
+					$("#month").hide();
+				}
+			});
 		})
 
 		.controller('HistorieCtrl', function($scope) {
