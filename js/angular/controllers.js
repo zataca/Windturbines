@@ -43,6 +43,23 @@ angular.module('blogPrototype.controllers', [])
 				$('#windrichting').html(values[4]);
 				$('#wind').html(values[5]);
 			}
+
+			$("#vandaag").click(function () {
+				console.info($(this).text());
+				$('#charts').html("vandaag");
+			})
+			$("#week").click(function () {
+				console.info($(this).text());
+				$('#charts').html("week");
+			})
+			$("#maand").click(function () {
+				console.info($(this).text());
+				$('#charts').html("<month-chart></div>");
+			})
+			$("#jaar").click(function () {
+				console.info($(this).text());
+				$('#charts').html("<div month-chart></div>");
+			})
 		})
 
 		.controller('OpbrengstenCtrl', function ($scope) {
@@ -253,7 +270,7 @@ angular.module('blogPrototype.controllers', [])
 				}
 			};
 		})
-		
+
 		.directive('dayPredictionChart', function () {
 			return {
 				restrict: 'A',
