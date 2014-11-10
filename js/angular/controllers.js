@@ -1,13 +1,13 @@
 /* De paginaspecifieke code zit in de controllers */
 angular.module('blogPrototype.controllers', [])
-		.controller('HomeCtrl', function($scope) {
+		.controller('HomeCtrl', function ($scope) {
 			console.info("Indexcontroller intiated");
 
 			// populate data
 			var turbines = ["1", "2", "3"];
-			var turbine1 = ["486 kW", "30 m/s", "24 %", "Z 1 Bft", "ZW", "Matige wind"];
-			var turbine2 = ["576 kW", "15 m/s", "21 %", "Z 5 Bft", "NW", "Zwakke wind"];
-			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "NO", "Sterke wind"];
+			var turbine1 = ["486 kW", "30 m/s", "24 %", "Z 1 Bft", "Harlingen"];
+			var turbine2 = ["576 kW", "15 m/s", "21 %", "Z 5 Bft", "Franeker"];
+			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "Groningen"];
 
 			// standard view
 			updateView(turbine1);
@@ -25,7 +25,7 @@ angular.module('blogPrototype.controllers', [])
 			$('.dropdown-menu').html(s);
 
 			// change view to selected item
-			$(".dropdown-menu li a").click(function() {
+			$(".dropdown-menu li a").click(function () {
 				var windturbine = $(this).text();
 				$('.dropdown-toggle').html(windturbine + ' <span class="caret"></span>');
 				$('#turbine').html($(this).text());
@@ -43,11 +43,10 @@ angular.module('blogPrototype.controllers', [])
 				$('#windsnelheid').html(values[1]);
 				$('#vermogen').html(values[2]);
 				$('#windkracht').html(values[3]);
-				$('#windrichting').html(values[4]);
-				$('#wind').html(values[5]);
+				$('#locatie').html(values[4]);
 			}
 
-			$(".btn-group > button.btn").on("click", function() {
+			$(".btn-group > button.btn").on("click", function () {
 				value = this.innerHTML;
 				if (value === "Vandaag") {
 					$("#prediction").show();
@@ -77,18 +76,18 @@ angular.module('blogPrototype.controllers', [])
 			});
 		})
 
-		.controller('HistorieCtrl', function($scope) {
+		.controller('HistorieCtrl', function ($scope) {
 			console.info("Indexcontroller intiated");
-			$(".dropdown-menu li a").click(function() {
+			$(".dropdown-menu li a").click(function () {
 				$('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
 				console.info($(this).text());
 			});
 		})
 
-		.directive('predictionChart', function() {
+		.directive('predictionChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Tijd', 'Voorspelde kWh', 'Actuele kWh'],
 						['10:00', 100, 102],
@@ -108,38 +107,39 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('profitChart', function() {
+		.directive('profitChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Year', '2014', '2013'],
-						['Jan', 1000, 400],
-						['Feb', 1170, 460],
-						['Maa', 660, 1120],
-						['Apr', 1030, 540],
-						['Mei', 100, 50],
-						['Jun', 900, 333],
-						['Jul', 555, 540],
+						['Year', 'Voorspelde kW', 'Actuele kW'],
+						['Jan', 1000, 950],
+						['Feb', 1170, 1100],
+						['Maa', 660, 700],
+						['Apr', 1030, 1000],
+						['Mei', 1000, 950],
+						['Jun', 900, 900],
+						['Jul', 950, 1000],
 						['Aug', 1111, 1000],
-						['Sep', 1030, 540],
-						['Okt', 888, 999],
-						['Nov', 666, 555],
-						['Dec', 111, 1111]
+						['Sep', 1030, 1000],
+						['Okt', 988, 999],
+						['Nov', 1000, 1111],
+						['Dec', 1111, 1111]
 					]);
 					var options = {
-						title: 'Totale opbrengst per jaar'
+						title: 'Jaarvoorspelling (kWh)',
+						legend: {position: 'bottom'}
 					};
-					var chart = new google.visualization.ColumnChart($elem[0]);
+					var chart = new google.visualization.LineChart($elem[0]);
 					chart.draw(data, options);
 				}
 			};
 		})
 
-		.directive('dayChart', function() {
+		.directive('dayChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Uren', 'Productie in kWh'],
 						['00', 250],
@@ -165,22 +165,22 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('weekChart', function() {
+		.directive('weekChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Dagen', 'Productie in kW'],
-						['Ma', 25],
-						['Di', 11],
-						['Wo', 30],
-						['Do', 14],
-						['Vr', 18],
-						['Za', 10],
-						['Zo', 09]
+						['Dagen', 'Voorspelde kW', 'Actuele kW'],
+						['Ma', 25, 23],
+						['Di', 11, 10],
+						['Wo', 30, 25],
+						['Do', 14, 20],
+						['Vr', 18, 15],
+						['Za', 10, 12],
+						['Zo', 09, 05]
 					]);
 					var options = {
-						title: 'Weekproductie', aggregationTarget: 'series',
+						title: 'Weekvoorspelling (kWh)', aggregationTarget: 'series',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
@@ -189,22 +189,22 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('monthChart', function() {
+		.directive('monthChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
-						['Dagen', 'Productie in MW'],
-						['1', 25],
-						['5', 30],
-						['10', 35],
-						['15', 25],
-						['20', 30],
-						['25', 35],
-						['30', 40]
+						['Dagen', 'Voorspelde kW', 'Actuele kW'],
+						['1', 25, 30],
+						['5', 30, 25],
+						['10', 35, 34],
+						['15', 25, 20],
+						['20', 30, 30],
+						['25', 35, 35],
+						['30', 40, 39]
 					]);
 					var options = {
-						title: 'Maandproductie', aggregationTarget: 'series',
+						title: 'Maandvoorspelling (kWh)', aggregationTarget: 'series',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
@@ -213,10 +213,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('monthHistoryChart', function() {
+		.directive('monthHistoryChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Month', 'MW'],
 						['Jan', 1000],
@@ -241,10 +241,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('quarterHistoryChart', function() {
+		.directive('quarterHistoryChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Quarter', 'MW'],
 						['Q1', 2730],
@@ -261,10 +261,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('yearHistoryChart', function() {
+		.directive('yearHistoryChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Year', 'GW'],
 						['2014', 10000],
@@ -282,10 +282,10 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('dayPredictionChart', function() {
+		.directive('dayPredictionChart', function () {
 			return {
 				restrict: 'A',
-				link: function($scope, $elem, $attr) {
+				link: function ($scope, $elem, $attr) {
 					var data = google.visualization.arrayToDataTable([
 						['Uren', 'Voorspelde Euro', 'Actuele Euro'],
 						['00', 1000, 1020],
@@ -306,6 +306,30 @@ angular.module('blogPrototype.controllers', [])
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
+
+		.directive('differenceChart', function () {
+			return {
+				restrict: 'A',
+				link: function ($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Uren', 'Dagen'],
+						['Ma', 08],
+						['Di', 07],
+						['Wo', 01],
+						['Do', 10],
+						['Vr', 05],
+						['Za', 04],
+						['Zo', 01]
+					]);
+					var options = {
+						title: 'Afwijking in %', aggregationTarget: 'series',
+						legend: {position: 'bottom'}
+					};
+					var chart = new google.visualization.ColumnChart($elem[0]);
 					chart.draw(data, options);
 				}
 			};
