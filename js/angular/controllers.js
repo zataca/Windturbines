@@ -128,6 +128,7 @@ angular.module('blogPrototype.controllers', [])
 					]);
 					var options = {
 						title: 'Jaarvoorspelling (kWh)',
+						width: '600',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
@@ -180,7 +181,9 @@ angular.module('blogPrototype.controllers', [])
 						['Zo', 09, 05]
 					]);
 					var options = {
-						title: 'Weekvoorspelling (kWh)', aggregationTarget: 'series',
+						title: 'Weekvoorspelling (kWh)',
+						aggregationTarget: 'series',
+						width: '600',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
@@ -204,7 +207,9 @@ angular.module('blogPrototype.controllers', [])
 						['30', 40, 39]
 					]);
 					var options = {
-						title: 'Maandvoorspelling (kWh)', aggregationTarget: 'series',
+						title: 'Maandvoorspelling (kWh)', 
+						width: '600',
+						aggregationTarget: 'series',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.LineChart($elem[0]);
