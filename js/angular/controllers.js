@@ -4,23 +4,27 @@ angular.module('blogPrototype.controllers', [])
 			console.info("Indexcontroller intiated");
 
 			// populate data
-			var turbines = ["1", "2", "3"];
+			var turbines = ["Enercon E-70", "Enercon E-44", "Enercon E-126"];
 			var turbine1 = ["486 kW", "30 m/s", "24 %", "Z 1 Bft", "Harlingen"];
 			var turbine2 = ["576 kW", "15 m/s", "21 %", "Z 5 Bft", "Franeker"];
 			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "Groningen"];
 
 			// standard view
 			updateView(turbine1);
-			$('#turbine').html('Windturbine 1');
-			$('.dropdown-toggle').html('Windturbine 1' + ' <span class="caret"></span>');
+			$('#turbine').html('Enercon E-70');
+			$('.dropdown-toggle').html('Enercon E-70' + ' <span class="caret"></span>');
 			$("#week").hide();
 			$("#month").hide();
 			$("#year").hide();
+			$("#weekeuro").hide();
+			$("#montheuro").hide();
+			$("#yeareuro").hide();
+
 
 			// populate dropdown menu
 			var s = '';
 			for (val in turbines) {
-				s += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Windturbine ' + turbines[val] + '</a></li>';
+				s += '<li role="presentation"><a role="menuitem" tabindex="-1" href="#">' + turbines[val] + '</a></li>';
 			}
 			$('.dropdown-menu').html(s);
 
@@ -29,9 +33,9 @@ angular.module('blogPrototype.controllers', [])
 				var windturbine = $(this).text();
 				$('.dropdown-toggle').html(windturbine + ' <span class="caret"></span>');
 				$('#turbine').html($(this).text());
-				if (windturbine === "Windturbine 1") {
+				if (windturbine === "Enercon E-70") {
 					updateView(turbine1);
-				} else if (windturbine === "Windturbine 2") {
+				} else if (windturbine === "Enercon E-44") {
 					updateView(turbine2);
 				} else {
 					updateView(turbine3);
@@ -52,26 +56,38 @@ angular.module('blogPrototype.controllers', [])
 					$("#prediction").show();
 					$("#day").show();
 					$("#week").hide();
+					$("#weekeuro").hide();
 					$("#month").hide();
+					$("#montheuro").hide();
 					$("#year").hide();
+					$("#yeareuro").hide();
 				} else if (value === "Week") {
 					$("#week").show();
+					$("#weekeuro").show();
 					$("#prediction").hide();
 					$("#day").hide();
 					$("#month").hide();
+					$("#montheuro").hide();
 					$("#year").hide();
+					$("#yeareuro").hide();
 				} else if (value === "Maand") {
 					$("#month").show();
+					$("#montheuro").show();
 					$("#prediction").hide();
 					$("#day").hide();
 					$("#week").hide();
+					$("#weekeuro").hide();
 					$("#year").hide();
+					$("#yeareuro").hide();
 				} else if (value === "Jaar") {
 					$("#year").show();
+					$("#yeareuro").show();
 					$("#prediction").hide();
 					$("#day").hide();
 					$("#week").hide();
+					$("#weekeuro").hide();
 					$("#month").hide();
+					$("#montheuro").hide();
 				}
 			});
 		})
@@ -107,7 +123,7 @@ angular.module('blogPrototype.controllers', [])
 			};
 		})
 
-		.directive('profitChart', function () {
+		.directive('yearChart', function () {
 			return {
 				restrict: 'A',
 				link: function ($scope, $elem, $attr) {
@@ -207,7 +223,7 @@ angular.module('blogPrototype.controllers', [])
 						['30', 40, 39]
 					]);
 					var options = {
-						title: 'Maandvoorspelling (kWh)', 
+						title: 'Maandvoorspelling (kWh)',
 						width: '600',
 						aggregationTarget: 'series',
 						legend: {position: 'bottom'}
@@ -332,6 +348,88 @@ angular.module('blogPrototype.controllers', [])
 					]);
 					var options = {
 						title: 'Afwijking in %', aggregationTarget: 'series',
+						legend: {position: 'right'}
+					};
+					var chart = new google.visualization.ColumnChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
+
+		.directive('weekEuroChart', function () {
+			return {
+				restrict: 'A',
+				link: function ($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Dagen', 'Voorspelde Euro', 'Actuele Euro'],
+						['Ma', 25, 23],
+						['Di', 11, 10],
+						['Wo', 30, 25],
+						['Do', 14, 20],
+						['Vr', 18, 15],
+						['Za', 10, 12],
+						['Zo', 09, 05]
+					]);
+					var options = {
+						title: 'Weekvoorspelling (Euro)',
+						aggregationTarget: 'series',
+						width: '600',
+						legend: {position: 'bottom'}
+					};
+					var chart = new google.visualization.ColumnChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
+
+		.directive('monthEuroChart', function () {
+			return {
+				restrict: 'A',
+				link: function ($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Dagen', 'Voorspelde Euro', 'Actuele Euro'],
+						['1', 25, 30],
+						['5', 30, 25],
+						['10', 35, 34],
+						['15', 25, 20],
+						['20', 30, 30],
+						['25', 35, 35],
+						['30', 40, 39]
+					]);
+					var options = {
+						title: 'Maandvoorspelling (Euro)',
+						width: '600',
+						aggregationTarget: 'series',
+						legend: {position: 'bottom'}
+					};
+					var chart = new google.visualization.ColumnChart($elem[0]);
+					chart.draw(data, options);
+				}
+			};
+		})
+
+		.directive('yearEuroChart', function () {
+			return {
+				restrict: 'A',
+				link: function ($scope, $elem, $attr) {
+					var data = google.visualization.arrayToDataTable([
+						['Year', 'Voorspelde Euro', 'Actuele Euro'],
+						['Jan', 1000, 950],
+						['Feb', 1170, 1100],
+						['Maa', 660, 700],
+						['Apr', 1030, 1000],
+						['Mei', 1000, 950],
+						['Jun', 900, 900],
+						['Jul', 950, 1000],
+						['Aug', 1111, 1000],
+						['Sep', 1030, 1000],
+						['Okt', 988, 999],
+						['Nov', 1000, 1111],
+						['Dec', 1111, 1111]
+					]);
+					var options = {
+						title: 'Jaarvoorspelling (Euro)',
+						width: '600',
 						legend: {position: 'bottom'}
 					};
 					var chart = new google.visualization.ColumnChart($elem[0]);
