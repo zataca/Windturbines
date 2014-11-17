@@ -13,12 +13,12 @@ angular.module('blogPrototype.controllers', [])
 			updateView(turbine1);
 			$('#turbine').html('Enercon E-70');
 			$('.dropdown-toggle').html('Enercon E-70' + ' <span class="caret"></span>');
-			$("#week").hide();
-			$("#month").hide();
-			$("#year").hide();
-			$("#weekeuro").hide();
-			$("#montheuro").hide();
-			$("#yeareuro").hide();
+			//$("#week").hide();
+			//$("#month").hide();
+			//$("#year").hide();
+			//$("#weekeuro").hide();
+			//$("#montheuro").hide();
+			//$("#yeareuro").hide();
 
 
 			// populate dropdown menu
