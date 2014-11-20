@@ -5,7 +5,7 @@ angular.module('blogPrototype.controllers', [])
 
 			// populate data
 			var turbines = ["Enercon E-70", "Enercon E-44", "Enercon E-126"];
-			var turbine1 = ["486 kW", "30 m/s", "24 %", "Z 1 Bft", "Harlingen"];
+			var turbine1 = ["904 kW", "10 m/s", "24 %", "Z 4 Bft", "Harlingen"];
 			var turbine2 = ["576 kW", "15 m/s", "21 %", "Z 5 Bft", "Franeker"];
 			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "Groningen"];
 
@@ -56,6 +56,7 @@ angular.module('blogPrototype.controllers', [])
 				} else if (value === "Week") {
 					drawWeekChart();
 					drawWeekEuroChart();
+					drawDifferenceChart();
 				} else if (value === "Maand") {
 					drawMonthChart();
 					drawMonthEuroChart();
@@ -73,7 +74,7 @@ angular.module('blogPrototype.controllers', [])
 			drawYearHistoryChart();
 			drawMonthHistoryChart();
 			drawQuarterHistoryChart();
-			drawDifferenceChart();
+			//drawDifferenceChart();
 
 			// change view to selected item
 			$(".dropdown-menu li a").click(function() {
