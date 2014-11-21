@@ -183,7 +183,7 @@ function drawYearEuroChart() {
 
 function drawYearHistoryChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Year', 'GW'],
+		['Year', 'MW'],
 		['2014', 10000],
 		['2013', 11700],
 		['2012', 9000],
