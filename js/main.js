@@ -54,9 +54,9 @@ function drawWeekChart() {
 		['Di', 11, 10],
 		['Wo', 30, 25],
 		['Do', 14, 20],
-		['Vr', 18, 15],
-		['Za', 10, 12],
-		['Zo', 09, 05]
+		['Vr', 18, null],
+		['Za', 10, null],
+		['Zo', 09, null]
 	]);
 	var options = {
 		title: 'Weekvoorspelling (kWh)',
@@ -75,9 +75,9 @@ function drawWeekEuroChart() {
 		['Di', 11, 10],
 		['Wo', 30, 25],
 		['Do', 14, 20],
-		['Vr', 18, 15],
-		['Za', 10, 12],
-		['Zo', 09, 05]
+		['Vr', 18, null],
+		['Za', 10, null],
+		['Zo', 09, null]
 	]);
 	var options = {
 		title: 'Weekvoorspelling (Euro)',
@@ -96,9 +96,9 @@ function drawMonthChart() {
 		['5', 30, 25],
 		['10', 35, 34],
 		['15', 25, 20],
-		['20', 30, 30],
-		['25', 35, 35],
-		['30', 40, 39]
+		['20', 30, null],
+		['25', 35, null],
+		['30', 40, null]
 	]);
 	var options = {
 		title: 'Maandvoorspelling (kWh)',
@@ -117,9 +117,9 @@ function drawMonthEuroChart() {
 		['5', 30, 25],
 		['10', 35, 34],
 		['15', 25, 20],
-		['20', 30, 30],
-		['25', 35, 35],
-		['30', 40, 39]
+		['20', 30, null],
+		['25', 35, null],
+		['30', 40, null]
 	]);
 	var options = {
 		title: 'Maandvoorspelling (Euro)',
@@ -140,12 +140,12 @@ function drawYearChart() {
 		['Apr', 1030, 1000],
 		['Mei', 1000, 950],
 		['Jun', 900, 900],
-		['Jul', 950, 1000],
-		['Aug', 1111, 1000],
-		['Sep', 1030, 1000],
-		['Okt', 988, 999],
-		['Nov', 1000, 1111],
-		['Dec', 1111, 1111]
+		['Jul', 950, null],
+		['Aug', 1111, null],
+		['Sep', 1030, null],
+		['Okt', 988, null],
+		['Nov', 1000, null],
+		['Dec', 1111, null]
 	]);
 	var options = {
 		title: 'Jaarvoorspelling (kWh)',
@@ -165,12 +165,12 @@ function drawYearEuroChart() {
 		['Apr', 1030, 1000],
 		['Mei', 1000, 950],
 		['Jun', 900, 900],
-		['Jul', 950, 1000],
-		['Aug', 1111, 1000],
-		['Sep', 1030, 1000],
-		['Okt', 988, 999],
-		['Nov', 1000, 1111],
-		['Dec', 1111, 1111]
+		['Jul', 950, null],
+		['Aug', 1111, null],
+		['Sep', 1030, null],
+		['Okt', 988, null],
+		['Nov', 1000, null],
+		['Dec', 1111, null]
 	]);
 	var options = {
 		title: 'Jaarvoorspelling (Euro)',
