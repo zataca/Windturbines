@@ -6,18 +6,18 @@ google.load("visualization", "1", {packages: ["corechart"]});
 function drawDayChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Tijd', 'Voorspelde kWh', 'Actuele kWh'],
-		['10:00', 100, 102],
-		['10:05', 101, 101],
-		['10:10', 220, 230],
-		['10:15', 150, null],
-		['10:30', 150, null],
-		['10:45', 130, null]
+		['10:00', 57.5, 50],
+		['10:15', 15, 5],
+		['10:30', 10, 40],
+		['10:45', 36, null],
+		['11:00', 10, null]
 	]);
 	var options = {
-		title: 'Windopbrengst (kWh)', 
+		title: 'Windopbrengst (in kWh)',
+		vAxis: {title: "kWh (x10)"},
+		hAxis: {title: "Tijd"},
 		aggregationTarget: 'series',
-		width: '800',
-		legend: {position: 'bottom'}
+		legend: {position: 'right'}
 	};
 	var chart = new google.visualization.LineChart(document.getElementById('day'));
 	chart.draw(data, options);
@@ -26,24 +26,18 @@ function drawDayChart() {
 function drawPredictionChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Uren', 'Voorspelde Euro', 'Actuele Euro'],
-		['00', 1000, 1020],
-		['02', 1017, 1016],
-		['04', 2020, 2050],
-		['06', 1003, 1050],
-		['08', 1005, 900],
-		['10', 1030, 1100],
-		['12', 1030, null],
-		['14', 1500, null],
-		['16', 1400, null],
-		['18', 1800, null],
-		['20', 2000, null],
-		['22', 2100, null]
+		['10:00', 15, 20],
+		['10:15', 32, 22],
+		['10:30', 46, 38],
+		['10:45', 56, null],
+		['11:00', 70, null]
 	]);
 	var options = {
-		title: 'Dagproductie (Euro)', 
+		title: 'Dagproductie (in €)',
+		vAxis: {title: "Opbrengst (in €)"},
+		hAxis: {title: "Tijd"},
 		aggregationTarget: 'series',
-		width: '800',
-		legend: {position: 'bottom'}
+		legend: {position: 'right'}
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('prediction'));
 	chart.draw(data, options);
@@ -58,8 +52,8 @@ function drawComboWeekChart() {
 		['03-12-14', 45, 25, 52],
 		['04-12-14', 48, 30, 15],
 		['05-12-14', 15, 25, 29],
-		['06-12-14', null, null, null],
-		['07-12-14', null, null, null]
+		['06-12-14', 30, null, null],
+		['07-12-14', 25, null, null]
 	]);
 
 	var options = {
@@ -81,7 +75,7 @@ function drawComboMonthChart() {
 		['49', 414, 300, 120],
 		['50', 300, 100, 40],
 		['51', 150, 300, 120],
-		['52', null, null, null]
+		['52', 200, null, null]
 	]);
 
 	var options = {
@@ -106,7 +100,10 @@ function drawYearHistoryChart() {
 		['2010', 10000]
 	]);
 	var options = {
-		title: 'Totale opbrengst per jaar'
+		title: 'Totale opbrengst per jaar',
+		vAxis: {title: "MWh"},
+		hAxis: {title: "Week"},
+		width: '1000'
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('yearhistory'));
 	chart.draw(data, options);
@@ -129,7 +126,10 @@ function drawMonthHistoryChart() {
 		['Dec', 111]
 	]);
 	var options = {
-		title: 'Totale opbrengst per maand'
+		title: 'Totale opbrengst per maand',
+		vAxis: {title: "MWh"},
+		hAxis: {title: "Week"},
+		width: '1000'
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('monthhistory'));
 	chart.draw(data, options);
@@ -144,7 +144,10 @@ function drawQuarterHistoryChart() {
 		['Q4', 1500]
 	]);
 	var options = {
-		title: 'Totale opbrengst per kwartaal'
+		title: 'Totale opbrengst per kwartaal',
+		vAxis: {title: "MWh"},
+		hAxis: {title: "Week"},
+		width: '1000'
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('quarterhistory'));
 	chart.draw(data, options);
@@ -152,23 +155,16 @@ function drawQuarterHistoryChart() {
 
 function drawDayDifferenceChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Uren', 'Afwijking'],
-		['00', -10],
-		['02', 10],
-		['04', 20],
-		['06', 10],
-		['08', 10],
-		['10', 10],
-		['12', 10],
-		['14', 15],
-		['16', 14],
-		['18', 18],
-		['20', 20],
-		['22', 21]
+		['Tijd', 'Afwijking'],
+		['10:00', -15],
+		['10:15', -66],
+		['10:30', 75],
+		['10:45', null],
+		['11:00', null]
 	]);
 	var options = {
-		title: 'Afwijking in %', 
-		vAxis: {title: "Afwijking in %)"},
+		title: 'Afwijking (in %)', 
+		vAxis: {title: "Afwijking (in %)"},
 		hAxis: {title: "Uur"},
 		aggregationTarget: 'series',
 		legend: {position: 'right'}
