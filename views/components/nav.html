@@ -9,21 +9,18 @@
 			</button>
 			<a class="navbar-brand" href="#">Dashboard</a>
         </div>
+		
         <div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Uitloggen</a></li>
 			</ul>
-        </div>
-	</div>
-</div>
-
-<div class="container-fluid">
-	<div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-			<ul class="nav nav-sidebar">
+		
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-left">
 				<li ng-class="{active: $state.includes('home')}"><a ui-sref="home">Mijn turbine</a></li>
 				<li ng-class="{active: $state.includes('historie')}"><a ui-sref="historie">Historie</a></li>
 			</ul>
         </div>
+		</div>
 	</div>
 </div>

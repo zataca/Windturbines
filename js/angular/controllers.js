@@ -1,13 +1,13 @@
 /* De paginaspecifieke code zit in de controllers */
 angular.module('blogPrototype.controllers', [])
-		.controller('HomeCtrl', function($scope) {
+		.controller('HomeCtrl', function ($scope) {
 			console.info("Indexcontroller intiated");
 
 			// populate data
-			var turbines = ["Enercon E-70", "Enercon E-44", "Enercon E-126"];
-			var turbine1 = ["904 kW", "10 m/s", "24 %", "Z 4 Bft", "Harlingen"];
-			var turbine2 = ["576 kW", "15 m/s", "21 %", "Z 5 Bft", "Franeker"];
-			var turbine3 = ["321 kW", "25 m/s", "17 %", "Z 4 Bft", "Groningen"];
+			var turbines = ["Enercon E-70", "Enercon E-44", "Enercon E-53"];
+			var turbine1 = ["904 kW", "9,5 m/s", "39 %", "Z 5 Bft 182°", "Harlingen"];
+			var turbine2 = ["576 kW", "11,5 m/s", "64 %", "Z 6 Bft 182°", "Franeker"];
+			var turbine3 = ["321 kW", "8,5 m/s", "40 %", "Z 5 Bft 182°", "Groningen"];
 
 			// standard view
 			updateView(turbine1);
@@ -15,6 +15,7 @@ angular.module('blogPrototype.controllers', [])
 			$('.dropdown-toggle').html('Enercon E-70' + ' <span class="caret"></span>');
 			drawDayChart();
 			drawPredictionChart();
+			drawDayDifferenceChart();
 
 			// populate dropdown menu
 			var s = '';
@@ -24,7 +25,7 @@ angular.module('blogPrototype.controllers', [])
 			$('.dropdown-menu').html(s);
 
 			// change view to selected item
-			$(".dropdown-menu li a").click(function() {
+			$(".dropdown-menu li a").click(function () {
 				var windturbine = $(this).text();
 				$('.dropdown-toggle').html(windturbine + ' <span class="caret"></span>');
 				$('#turbine').html($(this).text());
@@ -47,37 +48,33 @@ angular.module('blogPrototype.controllers', [])
 			}
 
 			// show charts from selected period
-			$(".btn-group > button.btn").on("click", function() {
+			$(".btn-group > button.btn").on("click", function () {
 				value = this.innerHTML;
 				$('#charts').children().empty();
 				if (value === "Vandaag") {
 					drawDayChart();
 					drawPredictionChart();
+					drawDayDifferenceChart();
 				} else if (value === "Week") {
-					drawWeekChart();
-					drawWeekEuroChart();
-					drawDifferenceChart();
+					drawComboWeekChart();
+					drawWeekDifferenceChart();
 				} else if (value === "Maand") {
-					drawMonthChart();
-					drawMonthEuroChart();
-				} else if (value === "Jaar") {
-					drawYearChart();
-					drawYearEuroChart();
+					drawComboMonthChart();
+					drawMonthDifferenceChart();
 				}
 			});
 		})
 
-		.controller('HistorieCtrl', function($scope) {
+		.controller('HistorieCtrl', function ($scope) {
 			console.info("Indexcontroller intiated");
 
 			// standard view
 			drawYearHistoryChart();
 			drawMonthHistoryChart();
 			drawQuarterHistoryChart();
-			//drawDifferenceChart();
 
 			// change view to selected item
-			$(".dropdown-menu li a").click(function() {
+			$(".dropdown-menu li a").click(function () {
 				$('.dropdown-toggle').html($(this).text() + ' <span class="caret"></span>');
 				console.info($(this).text());
 			});

@@ -14,8 +14,9 @@ function drawDayChart() {
 		['10:45', 130, null]
 	]);
 	var options = {
-		title: 'Windopbrengst (kWh)', aggregationTarget: 'series',
-		width: '600',
+		title: 'Windopbrengst (kWh)', 
+		aggregationTarget: 'series',
+		width: '800',
 		legend: {position: 'bottom'}
 	};
 	var chart = new google.visualization.LineChart(document.getElementById('day'));
@@ -39,145 +40,59 @@ function drawPredictionChart() {
 		['22', 2100, null]
 	]);
 	var options = {
-		title: 'Dagproductie (Euro)', aggregationTarget: 'series',
-		width: '600',
-		legend: {position: 'bottom'}
-	};
-	var chart = new google.visualization.LineChart(document.getElementById('prediction'));
-	chart.draw(data, options);
-}
-
-function drawWeekChart() {
-	var data = google.visualization.arrayToDataTable([
-		['Dagen', 'Voorspelde kW', 'Actuele kW'],
-		['Ma', 25, 23],
-		['Di', 11, 10],
-		['Wo', 30, 25],
-		['Do', 14, 20],
-		['Vr', 18, null],
-		['Za', 10, null],
-		['Zo', 09, null]
-	]);
-	var options = {
-		title: 'Weekvoorspelling (kWh)',
+		title: 'Dagproductie (Euro)', 
 		aggregationTarget: 'series',
-		width: '600',
+		width: '800',
 		legend: {position: 'bottom'}
 	};
-	var chart = new google.visualization.LineChart(document.getElementById('week'));
+	var chart = new google.visualization.ColumnChart(document.getElementById('prediction'));
 	chart.draw(data, options);
 }
 
-function drawWeekEuroChart() {
+function drawComboWeekChart() {
+	// Some raw data (not necessarily accurate)
 	var data = google.visualization.arrayToDataTable([
-		['Dagen', 'Voorspelde Euro', 'Actuele Euro'],
-		['Ma', 25, 23],
-		['Di', 11, 10],
-		['Wo', 30, 25],
-		['Do', 14, 20],
-		['Vr', 18, null],
-		['Za', 10, null],
-		['Zo', 09, null]
+		['Dag', 'Verwachting', 'Actueel', 'Prijs (x100)'],
+		['01-12-14', 55, 45, 22],
+		['02-12-14', 40, 40, 50],
+		['03-12-14', 45, 25, 52],
+		['04-12-14', 48, 30, 15],
+		['05-12-14', 15, 25, 29],
+		['06-12-14', null, null, null],
+		['07-12-14', null, null, null]
 	]);
+
 	var options = {
-		title: 'Weekvoorspelling (Euro)',
-		aggregationTarget: 'series',
-		width: '600',
-		legend: {position: 'bottom'}
+		title: 'Weekopbrengst',
+		vAxis: {title: "kWh (x1000)"},
+		hAxis: {title: "Datum"},
+		seriesType: "bars",
+		series: {2: {type: "line"}}
 	};
-	var chart = new google.visualization.ColumnChart(document.getElementById('weekeuro'));
+
+	var chart = new google.visualization.ComboChart(document.getElementById('weekcombo'));
 	chart.draw(data, options);
 }
 
-function drawMonthChart() {
+function drawComboMonthChart() {
+	// Some raw data (not necessarily accurate)
 	var data = google.visualization.arrayToDataTable([
-		['Dagen', 'Voorspelde kW', 'Actuele kW'],
-		['1', 25, 30],
-		['5', 30, 25],
-		['10', 35, 34],
-		['15', 25, 20],
-		['20', 30, null],
-		['25', 35, null],
-		['30', 40, null]
+		['Week', 'Verwachting', 'Actueel', 'Prijs (x100)'],
+		['49', 414, 300, 120],
+		['50', 300, 100, 40],
+		['51', 150, 300, 120],
+		['52', null, null, null]
 	]);
-	var options = {
-		title: 'Maandvoorspelling (kWh)',
-		width: '600',
-		aggregationTarget: 'series',
-		legend: {position: 'bottom'}
-	};
-	var chart = new google.visualization.LineChart(document.getElementById('month'));
-	chart.draw(data, options);
-}
 
-function drawMonthEuroChart() {
-	var data = google.visualization.arrayToDataTable([
-		['Dagen', 'Voorspelde Euro', 'Actuele Euro'],
-		['1', 25, 30],
-		['5', 30, 25],
-		['10', 35, 34],
-		['15', 25, 20],
-		['20', 30, null],
-		['25', 35, null],
-		['30', 40, null]
-	]);
 	var options = {
-		title: 'Maandvoorspelling (Euro)',
-		width: '600',
-		aggregationTarget: 'series',
-		legend: {position: 'bottom'}
+		title: 'Maandopbrengst',
+		vAxis: {title: "MWh"},
+		hAxis: {title: "Week"},
+		seriesType: "bars",
+		series: {4: {type: "line"}}
 	};
-	var chart = new google.visualization.ColumnChart(document.getElementById('montheuro'));
-	chart.draw(data, options);
-}
 
-function drawYearChart() {
-	var data = google.visualization.arrayToDataTable([
-		['Year', 'Voorspelde kW', 'Actuele kW'],
-		['Jan', 1000, 950],
-		['Feb', 1170, 1100],
-		['Maa', 660, 700],
-		['Apr', 1030, 1000],
-		['Mei', 1000, 950],
-		['Jun', 900, 900],
-		['Jul', 950, null],
-		['Aug', 1111, null],
-		['Sep', 1030, null],
-		['Okt', 988, null],
-		['Nov', 1000, null],
-		['Dec', 1111, null]
-	]);
-	var options = {
-		title: 'Jaarvoorspelling (kWh)',
-		width: '600',
-		legend: {position: 'bottom'}
-	};
-	var chart = new google.visualization.LineChart(document.getElementById('year'));
-	chart.draw(data, options);
-}
-
-function drawYearEuroChart() {
-	var data = google.visualization.arrayToDataTable([
-		['Year', 'Voorspelde Euro', 'Actuele Euro'],
-		['Jan', 1000, 950],
-		['Feb', 1170, 1100],
-		['Maa', 660, 700],
-		['Apr', 1030, 1000],
-		['Mei', 1000, 950],
-		['Jun', 900, 900],
-		['Jul', 950, null],
-		['Aug', 1111, null],
-		['Sep', 1030, null],
-		['Okt', 988, null],
-		['Nov', 1000, null],
-		['Dec', 1111, null]
-	]);
-	var options = {
-		title: 'Jaarvoorspelling (Euro)',
-		width: '600',
-		legend: {position: 'bottom'}
-	};
-	var chart = new google.visualization.ColumnChart(document.getElementById('yeareuro'));
+	var chart = new google.visualization.ComboChart(document.getElementById('monthcombo'));
 	chart.draw(data, options);
 }
 
@@ -235,21 +150,70 @@ function drawQuarterHistoryChart() {
 	chart.draw(data, options);
 }
 
-function drawDifferenceChart() {
+function drawDayDifferenceChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Uren', 'Dagen'],
-		['Ma', 08],
-		['Di', 07],
-		['Wo', 01],
-		['Do', 10],
-		['Vr', 05],
-		['Za', 04],
-		['Zo', 01]
+		['Uren', 'Afwijking'],
+		['00', -10],
+		['02', 10],
+		['04', 20],
+		['06', 10],
+		['08', 10],
+		['10', 10],
+		['12', 10],
+		['14', 15],
+		['16', 14],
+		['18', 18],
+		['20', 20],
+		['22', 21]
 	]);
 	var options = {
-		title: 'Afwijking in %', aggregationTarget: 'series',
+		title: 'Afwijking in %', 
+		vAxis: {title: "Afwijking in %)"},
+		hAxis: {title: "Uur"},
+		aggregationTarget: 'series',
 		legend: {position: 'right'}
 	};
-	var chart = new google.visualization.ColumnChart(document.getElementById('difference'));
+	var chart = new google.visualization.ColumnChart(document.getElementById('daydifference'));
+	chart.draw(data, options);
+}
+
+function drawWeekDifferenceChart() {
+	var data = google.visualization.arrayToDataTable([
+		['Dagen', 'Afwijking'],
+		['01-12-14', -10],
+		['02-12-14', 00],
+		['03-12-14', -35],
+		['04-12-14', -30],
+		['05-12-14', 80],
+		['06-12-14', null],
+		['07-12-14', null]
+	]);
+	var options = {
+		title: 'Afwijking (in %)', 
+		vAxis: {title: "Afwijking (in %)"},
+		hAxis: {title: "Datum"},
+		aggregationTarget: 'series',
+		legend: {position: 'right'}
+	};
+	var chart = new google.visualization.ColumnChart(document.getElementById('weekdifference'));
+	chart.draw(data, options);
+}
+
+function drawMonthDifferenceChart() {
+	var data = google.visualization.arrayToDataTable([
+		['Week', 'Afwijking'],
+		['49', -25],
+		['50', -65],
+		['51', 100],
+		['52', null]
+	]);
+	var options = {
+		title: 'Afwijking (in %)', 
+		vAxis: {title: "Afwijking (in %)"},
+		hAxis: {title: "Week"},
+		aggregationTarget: 'series',
+		legend: {position: 'right'}
+	};
+	var chart = new google.visualization.ColumnChart(document.getElementById('monthdifference'));
 	chart.draw(data, options);
 }
