@@ -5,7 +5,7 @@ google.load("visualization", "1", {packages: ["corechart"]});
 
 function drawDayChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Tijd', 'Voorspelde kWh', 'Actuele kWh'],
+		['Tijd', 'Verwachting', 'Actueel'],
 		['10:00', 57.5, 50],
 		['10:15', 15, 5],
 		['10:30', 10, 40],
@@ -19,13 +19,14 @@ function drawDayChart() {
 		aggregationTarget: 'series',
 		legend: {position: 'right'}
 	};
+		
 	var chart = new google.visualization.LineChart(document.getElementById('day'));
 	chart.draw(data, options);
 }
 
 function drawPredictionChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Uren', 'Voorspelde Euro', 'Actuele Euro'],
+		['Uren', 'Verwachting', 'Actueel'],
 		['10:00', 15, 20],
 		['10:15', 32, 22],
 		['10:30', 46, 38],
@@ -47,7 +48,7 @@ function drawComboWeekChart() {
 	// Some raw data (not necessarily accurate)
 	var data = google.visualization.arrayToDataTable([
 		['Dag', 'Verwachting', 'Actueel', 'Prijs (x100)'],
-		['01-12-14', 55, 45, 22],
+		['01-12-14', 55, 50, 20],
 		['02-12-14', 40, 40, 50],
 		['03-12-14', 45, 25, 52],
 		['04-12-14', 48, 30, 15],
@@ -58,10 +59,11 @@ function drawComboWeekChart() {
 
 	var options = {
 		title: 'Weekopbrengst',
-		vAxis: {title: "kWh (x1000)"},
+		vAxis: {title: "kWh (x1000)", 
+				maxValue: 55},
 		hAxis: {title: "Datum"},
 		seriesType: "bars",
-		series: {2: {type: "line"}}
+		series: {2: {type: "line"}},
 	};
 
 	var chart = new google.visualization.ComboChart(document.getElementById('weekcombo'));
@@ -72,7 +74,7 @@ function drawComboMonthChart() {
 	// Some raw data (not necessarily accurate)
 	var data = google.visualization.arrayToDataTable([
 		['Week', 'Verwachting', 'Actueel', 'Prijs (x100)'],
-		['49', 414, 300, 120],
+		['49', 386, 300, 120],
 		['50', 300, 100, 40],
 		['51', 150, 300, 120],
 		['52', 200, null, null]
@@ -92,7 +94,7 @@ function drawComboMonthChart() {
 
 function drawYearHistoryChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Year', 'MW'],
+		['Jaar', 'MWh'],
 		['2014', 10000],
 		['2013', 11700],
 		['2012', 9000],
@@ -100,9 +102,9 @@ function drawYearHistoryChart() {
 		['2010', 10000]
 	]);
 	var options = {
-		title: 'Totale opbrengst per jaar',
-		vAxis: {title: "MWh"},
-		hAxis: {title: "Week"},
+		title: 'Jaaropbrengst',
+		vAxis: {title: "Opbrengst (in MWh)"},
+		hAxis: {title: "Jaar"},
 		width: '1000'
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('yearhistory'));
@@ -111,7 +113,7 @@ function drawYearHistoryChart() {
 
 function drawMonthHistoryChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Month', 'MW'],
+		['Maand', 'MWh'],
 		['Jan', 1000],
 		['Feb', 1170],
 		['Maa', 660],
@@ -126,9 +128,9 @@ function drawMonthHistoryChart() {
 		['Dec', 111]
 	]);
 	var options = {
-		title: 'Totale opbrengst per maand',
-		vAxis: {title: "MWh"},
-		hAxis: {title: "Week"},
+		title: 'Maandopbrengst',
+		vAxis: {title: "Opbrengst (in MWh)"},
+		hAxis: {title: "Maand"},
 		width: '1000'
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('monthhistory'));
@@ -137,16 +139,16 @@ function drawMonthHistoryChart() {
 
 function drawQuarterHistoryChart() {
 	var data = google.visualization.arrayToDataTable([
-		['Quarter', 'MW'],
+		['Kwartaal', 'MWh'],
 		['Q1', 2730],
 		['Q2', 2030],
 		['Q3', 2695],
 		['Q4', 1500]
 	]);
 	var options = {
-		title: 'Totale opbrengst per kwartaal',
-		vAxis: {title: "MWh"},
-		hAxis: {title: "Week"},
+		title: 'Kwartaalopbrengst',
+		vAxis: {title: "Opbrengst (in MWh)"},
+		hAxis: {title: "Kwartaal"},
 		width: '1000'
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('quarterhistory'));
