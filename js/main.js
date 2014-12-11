@@ -6,16 +6,20 @@ google.load("visualization", "1", {packages: ["corechart"]});
 function drawDayChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Tijd', 'Verwachting', 'Actueel'],
-		['10:00', 57.5, 50],
-		['10:15', 15, 5],
-		['10:30', 10, 40],
-		['10:45', 36, null],
-		['11:00', 10, null]
+		['00:00', 1000, 1100],
+		['03:00', 800, 950],
+		['06:00', 1500, 1450],
+		['09:00', 1400, 1300],
+		['12:00', 500, null],
+		['15:00', 300, null],
+		['18:00', 0, null],
+		['21:00', 200, null],
+		['00:00', 550, null]
 	]);
 	var options = {
-		title: 'Windopbrengst (in kWh)',
-		vAxis: {title: "kWh (x10)"},
-		hAxis: {title: "Tijd"},
+		title: 'Dagproductie (in kWh)',max: 2300,
+		vAxis: {title: "Opbrengst (in kWh)"},
+		hAxis: {title: "Uur"},
 		aggregationTarget: 'series',
 		legend: {position: 'right'}
 	};
@@ -27,16 +31,20 @@ function drawDayChart() {
 function drawPredictionChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Uren', 'Verwachting', 'Actueel'],
-		['10:00', 15, 20],
-		['10:15', 32, 22],
-		['10:30', 46, 38],
-		['10:45', 56, null],
-		['11:00', 70, null]
+		['00:00', 0, 0],
+		['03:00', 120, 132],
+		['06:00', 216, 246],
+		['09:00', 396, 420],
+		['12:00', 564, null],
+		['15:00', 642, null],
+		['18:00', 678, null],
+		['21:00', 678, null],
+		['00:00', 702, null]
 	]);
 	var options = {
-		title: 'Dagproductie (in €)',
+		title: 'Dagproductie (in €)',max: 2200, 
 		vAxis: {title: "Opbrengst (in €)"},
-		hAxis: {title: "Tijd"},
+		hAxis: {title: "Uur"},
 		aggregationTarget: 'series',
 		legend: {position: 'right'}
 	};
@@ -58,7 +66,7 @@ function drawComboWeekChart() {
 	]);
 
 	var options = {
-		title: 'Weekopbrengst',
+		title: 'Weekproductie',
 		vAxis: {title: "kWh (x1000)", 
 				maxValue: 55},
 		hAxis: {title: "Datum"},
@@ -158,11 +166,15 @@ function drawQuarterHistoryChart() {
 function drawDayDifferenceChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Tijd', 'Afwijking'],
-		['10:00', -15],
-		['10:15', -66],
-		['10:30', 75],
-		['10:45', null],
-		['11:00', null]
+		['00:00', 0],
+		['03:00', 10],
+		['06:00', 4],
+		['09:00', -5],
+		['12:00', null],
+		['15:00', null],
+		['18:00', null],
+		['21:00', null],
+		['00:00', null]
 	]);
 	var options = {
 		title: 'Afwijking (in %)', 
