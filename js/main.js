@@ -35,14 +35,14 @@ function drawDayChart() {
 function drawComboWeekChart() {
 	// Some raw data (not necessarily accurate)
 	var data = google.visualization.arrayToDataTable([
-		['Dag', 'Verwachting', 'Actueel', 'Prijs (x100)'],
-		['11-12-14', 55, 50, 20],
-		['12-12-14', 40, 40, 16],
-		['13-12-14', 45, 25, 10],
-		['14-12-14', 48, 30, 12],
-		['15-12-14', 15, 25, 10],
-		['16-12-14', 30, null, null],
-		['17-12-14', 25, null, null]
+		['Dag', 'Verwachting', 'Actueel'],
+		['11-12-14', 55, 50],
+		['12-12-14', 40, 40],
+		['13-12-14', 45, 25],
+		['14-12-14', 48, 30],
+		['15-12-14', 15, 25],
+		['16-12-14', 30, null],
+		['17-12-14', 25, null]
 	]);
 
 	var options = {
