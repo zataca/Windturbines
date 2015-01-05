@@ -61,11 +61,11 @@ function drawComboWeekChart() {
 function drawComboMonthChart() {
 	// Some raw data (not necessarily accurate)
 	var data = google.visualization.arrayToDataTable([
-		['Week', 'Verwachting', 'Actueel', 'Prijs (x100)'],
-		['49', 386, 300, 120],
-		['50', 300, 100, 40],
-		['51', 150, 300, 120],
-		['52', 200, null, null]
+		['Week', 'Verwachting', 'Actueel'],
+		['49', 386, 300],
+		['50', 300, 100],
+		['51', 150, 300],
+		['52', 200, null]
 	]);
 
 	var options = {
