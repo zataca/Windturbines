@@ -14,7 +14,6 @@ angular.module('blogPrototype.controllers', [])
 			$('#turbine').html('Enercon E-70');
 			$('.dropdown-toggle').html('Enercon E-70' + ' <span class="caret"></span>');
 			drawDayChart();
-			drawPredictionChart();
 			drawDayDifferenceChart();
 
 			// populate dropdown menu
@@ -53,7 +52,6 @@ angular.module('blogPrototype.controllers', [])
 				$('#charts').children().empty();
 				if (value === "Vandaag") {
 					drawDayChart();
-					drawPredictionChart();
 					drawDayDifferenceChart();
 				} else if (value === "Week") {
 					drawComboWeekChart();
