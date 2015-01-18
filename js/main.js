@@ -23,9 +23,8 @@ function drawDayChart() {
 	var options = {
 		title: 'Opbrengst per 3 uur (in kW)',
 		vAxis: {title: "Opbrengst (in kW)"},
-		hAxis: {title: "Tijd"},
-		aggregationTarget: 'series',
-		legend: {position: 'right'}
+		hAxis: {title: "Tijd", gridlines: {count: 10}},
+		legend: {position: 'top', alignment: 'end'}
 	};
 		
 	var chart = new google.visualization.ColumnChart(document.getElementById('day'));
@@ -146,10 +145,10 @@ function drawQuarterHistoryChart() {
 function drawDayDifferenceChart() {
 	var data = google.visualization.arrayToDataTable([
 		['Tijd', 'Afwijking'],
-		['12:00', 0],
-		['12:15', 10],
-		['12:30', 4],
-		['12:45', -5],
+		['12:00', -9],
+		['12:15', -12],
+		['12:30', -5],
+		['12:45', -2],
 		['13:00', null],
 		['13:15', null],
 		['13:30', null],
@@ -161,11 +160,10 @@ function drawDayDifferenceChart() {
 		['15:00', null]
 	]);
 	var options = {
-		title: 'Afwijking (in %)', 
+		title: 'Afwijking (in %)',
 		vAxis: {title: "Afwijking (in %)"},
 		hAxis: {title: "Tijd"},
-		aggregationTarget: 'series',
-		legend: {position: 'right'}
+		legend: {position: 'top', alignment: 'end'}
 	};
 	var chart = new google.visualization.ColumnChart(document.getElementById('daydifference'));
 	chart.draw(data, options);
